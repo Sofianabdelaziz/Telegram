@@ -1,53 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ad Viewer</title>
+    <title>مشاهدة إعلان بمكافأة</title>
+    <script src='//libtl.com/sdk.js' data-zone='9584277'></script>
     <style>
         body {
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
         }
-        #backButton {
-            display: none;
+        button {
             background: linear-gradient(45deg, #4e54c8, #8f94fb);
-            border: none;
             color: white;
+            border: none;
             padding: 15px 30px;
             font-size: 16px;
-            border-radius: 25px;
+            border-radius: 8px;
             cursor: pointer;
-            margin-top: 20px;
-            transition: 0.3s ease;
-        }
-        #backButton:hover {
-            opacity: 0.8;
         }
     </style>
 </head>
 <body>
 
-    <!-- Monetag Ad Script -->
-    <script src='//libtl.com/sdk.js' data-zone='9584277' data-sdk='show_9584277'></script>
-
-    <button id="backButton" onclick="goBack()">⬅️ الرجوع</button>
+    <h2>اضغط لمشاهدة إعلان والحصول على مكافأة</h2>
+    <button onclick="watchAd()">🎥 شاهد الإعلان</button>
 
     <script>
-        function goBack() {
-            window.history.back();
+        function watchAd() {
+            show_9584277('pop').then(() => {
+                alert("✅ شكراً لمشاهدتك الإعلان! تم إضافة المكافأة.");
+                // هنا يمكنك تنفيذ كود المكافأة مثل API أو تحديث البيانات
+            }).catch(e => {
+                alert("❌ حدث خطأ أثناء تشغيل الإعلان.");
+            });
         }
-
-        // Show back button after 10 seconds
-        setTimeout(() => {
-            document.getElementById('backButton').style.display = 'inline-block';
-        }, 10000);
     </script>
 
 </body>
