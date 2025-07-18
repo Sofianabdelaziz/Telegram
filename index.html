@@ -31,10 +31,23 @@
     <button onclick="watchAd()">🎥 شاهد الإعلان</button>
 
     <script>
+        let lastAdType = null;
+        const adTypes = ['pop', 'int', 'rewarded'];
+
+        function getRandomAdType() {
+            let newAdType;
+            do {
+                newAdType = adTypes[Math.floor(Math.random() * adTypes.length)];
+            } while (newAdType === lastAdType);
+            lastAdType = newAdType;
+            return newAdType;
+        }
+
         function watchAd() {
-            show_9584277('pop').then(() => {
+            const adType = getRandomAdType();
+            show_9584277(adType).then(() => {
                 alert("✅ شكراً لمشاهدتك الإعلان! تم إضافة المكافأة.");
-                // هنا يمكنك تنفيذ كود المكافأة مثل API أو تحديث البيانات
+                // هنا يمكنك إضافة كود المكافأة
             }).catch(e => {
                 alert("❌ حدث خطأ أثناء تشغيل الإعلان.");
             });
